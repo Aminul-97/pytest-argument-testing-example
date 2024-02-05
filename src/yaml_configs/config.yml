@@ -1,0 +1,7 @@
+rest:
+  url: "https://example.com/"
+  port: 3001
+
+details: "A Demo Website"
+
+
