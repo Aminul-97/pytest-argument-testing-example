@@ -41,11 +41,11 @@ def yaml_reader(path: str) -> Dict:
         print(f"Error reading YAML file: {e}")
 
 
-def main() -> None:
+def main(args=None) -> None:
     """
     Main function to read YAML file
     """
-    args = parse_args()
+    args = parse_args(args)
     configpath = args.configpath
     print(yaml_reader(path=configpath))
 
