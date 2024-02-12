@@ -11,7 +11,6 @@ def get_user_input(request):
     expected_output = str(request.config.getoption("--expected_output"))
     return yaml_location, expected_output
 
-
 # Testing argparse_yaml_reader()
 def test_argparse_yaml_reader(capsys, get_user_input):
     yaml_location, expected_output = get_user_input

@@ -1,6 +1,6 @@
 def pytest_addoption(parser):
     parser.addoption(
-        "--yaml_location", action="store", default="10", help="Location to YAML file"
+        "--yaml_location", action="store", help="Location to YAML file"
     )
     parser.addoption(
         "--expected_output", action="store", help="Expected output"

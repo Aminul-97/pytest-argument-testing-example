@@ -3,7 +3,6 @@ import typer
 
 app = typer.Typer()
 
-
 @app.command()
 def main(configpath: str) -> None:
     """
@@ -17,7 +16,6 @@ def main(configpath: str) -> None:
     """
     yaml_reader(configpath)
 
-
 def yaml_reader(path: str) -> None:
     """
     Function to read YAML config file
@@ -28,7 +26,6 @@ def yaml_reader(path: str) -> None:
             print(data)
     except Exception as e:
         print(f"Error reading YAML file: {e}")
-
 
 if __name__ == "__main__":
     app()

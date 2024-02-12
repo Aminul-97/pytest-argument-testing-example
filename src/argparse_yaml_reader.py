@@ -2,7 +2,6 @@ import yaml
 from typing import Dict
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
-
 def parse_args(args=None) -> ArgumentParser.parse_args:
     """
     Function to parse command line arguments
@@ -22,7 +21,6 @@ def parse_args(args=None) -> ArgumentParser.parse_args:
     )
     return argument_parser.parse_args(args)
 
-
 def yaml_reader(path: str) -> Dict:
     """
     Function to read YAML config file
@@ -39,7 +37,6 @@ def yaml_reader(path: str) -> Dict:
             return data
     except Exception as e:
         print(f"Error reading YAML file: {e}")
-
 
 def main(args=None) -> None:
     """
