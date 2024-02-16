@@ -9,6 +9,8 @@ runner = CliRunner()
 test_cases = [
     ("src/yaml_configs/config.yml", "{'rest': {'url': 'https://example.com/', 'port': 3001}, 'details': 'A Demo Website'}"),
     ("src/yaml_configs/server_config.yml", "Error reading YAML file"),
+    ("--config_path", "No such option"),
+    ("' '", "Error reading YAML file"),
     ("", "Error: Missing argument 'CONFIGPATH'")
 ]
 
