@@ -1,14 +1,15 @@
 import pytest
 import shlex
-from src.argparse_yaml_reader import main
+from src.argparse_yaml_reader import main, yaml_reader
 from typer.testing import CliRunner
 from src.typer_yaml_reader import app
 
-# Fixture to get user inputs
+
+# Fixture to get user inputs and find expected outputs
 @pytest.fixture
 def get_user_input(request):
     yaml_location = str(request.config.getoption("--yaml_location"))
-    expected_output = str(request.config.getoption("--expected_output"))
+    expected_output = str(yaml_reader(yaml_location))
     return yaml_location, expected_output
 
 # Testing argparse_yaml_reader()
