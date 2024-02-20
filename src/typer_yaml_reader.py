@@ -1,6 +1,6 @@
 import yaml
 import typer
-
+import os
 app = typer.Typer()
 
 @app.command()
@@ -14,7 +14,13 @@ def main(configpath: str) -> None:
     Returns:
     None
     """
-    yaml_reader(configpath)
+
+    if configpath and os.path.isfile(configpath):
+        yaml_reader(configpath)
+    else:
+        print(
+            f"`configpath` must be a valid file path. Provided path: `{configpath}` does not exist."
+        )
 
 def yaml_reader(path: str) -> None:
     """

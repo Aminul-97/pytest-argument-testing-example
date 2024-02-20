@@ -4,8 +4,20 @@ import shlex
 
 test_cases = [
     (
-        "--configpath 'src/yaml_configs/config.yml'",  # Valid path
+        "--configpath 'src/yaml_configs/config.yml'",  # Valid path 
         "{'rest': {'url': 'https://example.com/', 'port': 3001}, 'details': 'A Demo Website'}",
+    ),
+     (
+        "--configpath 'src/config.yml'",  # Path not exist 
+        "`configpath` must be a valid file path. Provided path: `src/config.yml` does not exist.",
+    ),
+    (
+        "--configpath ''",  # Null or None value passed 
+        "No path provided",
+    ),
+    (
+        "--configpath 'src/yaml_configs==config.yml'",  # Invalid ascii character passsed
+        "`configpath` must be a valid file path. Provided path: `src/yaml_configs==config.yml` does not exist.",
     ),
     (
         "--configpath 'path/to/nonexistent/file.yml'",  # Nonexistent file
@@ -26,6 +38,18 @@ def test_argparse_yaml_reader(capsys, command, expected_output):
 test_cases_sys_exit = [
     (
         "",  # No argument passed
+        "the following arguments are required: --configpath",
+    ),
+    (
+        "-configpath 'src/yaml_configs/config.yml'",  # Wrong flag passed 
+        "the following arguments are required: --configpath",
+    ),
+    (
+        "configpath 'src/yaml_configs/config.yml'",  # No flag passed 
+        "the following arguments are required: --configpath",
+    ),
+    (
+        "-+configpath 'src/yaml_configs/config.yml'",  # Wrong Type of flag passed 
         "the following arguments are required: --configpath",
     ),
     (

@@ -1,6 +1,7 @@
 import os
 import yaml
 from typing import Dict
+import argparse
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 
@@ -48,13 +49,16 @@ def main(args=None) -> None:
     """
     args = parse_args(args)
     configpath = args.configpath
-    if configpath and os.path.isfile(configpath):
-        print(yaml_reader(path=configpath))
-    else:
-        print(
-            f"`configpath` must be a valid file path. Provided path: `{configpath}` does not exist."
-        )
 
+    if len(configpath) == 0:
+        print("No path provided")
+    else:
+        if configpath and os.path.isfile(configpath):
+            print(yaml_reader(path=configpath))
+        else:
+            print(
+                f"`configpath` must be a valid file path. Provided path: `{configpath}` does not exist."
+            )
 
 if __name__ == "__main__":
     main()
