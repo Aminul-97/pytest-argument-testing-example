@@ -16,7 +16,7 @@ test_cases = [
         "{'url': 'https://prod.com/', 'port': 2007}",
     ),
     (
-        "--configpath 'src/config.yml' --env='dev'",  # Path not exist 
+        "--configpath 'src/config.yml' --env='dev'",  # Path doesn't exist 
         "`configpath` must be a valid file path. Provided path: `src/config.yml` does not exist.",
     ),
     (
@@ -24,7 +24,7 @@ test_cases = [
         "No path provided",
     ),
     (
-        "--configpath 'src/yaml_configs==config.yml'",  # Invalid ascii character passsed
+        "--configpath 'src/yaml_configs==config.yml'",  # Invalid path
         "`configpath` must be a valid file path. Provided path: `src/yaml_configs==config.yml` does not exist.",
     ),
     (
@@ -40,7 +40,6 @@ def test_argparse_yaml_reader(capsys, command, expected_output):
     captured = capsys.readouterr()
     output = captured.out + captured.err
     assert expected_output in output
-
 
 # Test cases
 test_cases_sys_exit = [
