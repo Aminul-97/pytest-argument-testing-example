@@ -4,11 +4,19 @@ import shlex
 
 test_cases = [
     (
-        "--configpath 'src/yaml_configs/config.yml'",  # Valid path 
-        "{'rest': {'url': 'https://example.com/', 'port': 3001}, 'details': 'A Demo Website'}",
+        "--configpath='src/yaml_configs/config.yml'",  # Valid path without optional args
+        "{'url': 'https://example.com/', 'port': 3001}",
     ),
-     (
-        "--configpath 'src/config.yml'",  # Path not exist 
+    (
+        "--configpath 'src/yaml_configs/config.yml' --env='dev'",  # Valid path with optional args
+        "{'url': 'https://dev.com/', 'port': 3010}",
+    ),
+    (
+        "--env='prod' --configpath 'src/yaml_configs/config.yml'",  # Different order
+        "{'url': 'https://prod.com/', 'port': 2007}",
+    ),
+    (
+        "--configpath 'src/config.yml' --env='dev'",  # Path not exist 
         "`configpath` must be a valid file path. Provided path: `src/config.yml` does not exist.",
     ),
     (
@@ -41,19 +49,19 @@ test_cases_sys_exit = [
         "the following arguments are required: --configpath",
     ),
     (
-        "-configpath 'src/yaml_configs/config.yml'",  # Wrong flag passed 
+        "-configpath 'src/yaml_configs/config.yml' --env 'dev'",  # Wrong flag passed 
         "the following arguments are required: --configpath",
     ),
     (
-        "configpath 'src/yaml_configs/config.yml'",  # No flag passed 
+        "configpath 'src/yaml_configs/config.yml' --env 'dev'",  # No flag passed 
         "the following arguments are required: --configpath",
     ),
     (
-        "-+configpath 'src/yaml_configs/config.yml'",  # Wrong Type of flag passed 
+        "-+configpath 'src/yaml_configs/config.yml' --env 'dev'",  # Wrong Type of flag passed 
         "the following arguments are required: --configpath",
     ),
     (
-        "--wrong_argument 'src/yaml_configs/config.yml'",  # Wrong argument name
+        "--wrong_argument 'src/yaml_configs/config.yml' --env 'dev'",  # Wrong argument name
         "the following arguments are required: --configpath",
     ),
 ]

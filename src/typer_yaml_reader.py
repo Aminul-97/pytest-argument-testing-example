@@ -4,7 +4,7 @@ import os
 app = typer.Typer()
 
 @app.command()
-def main(configpath: str) -> None:
+def main(configpath: str, env:str = 'rest') -> None:
     """
     Main function to read YAML file
 
@@ -14,22 +14,21 @@ def main(configpath: str) -> None:
     Returns:
     None
     """
-
     if configpath and os.path.isfile(configpath):
-        yaml_reader(configpath)
+        print(yaml_reader(configpath, env))
     else:
         print(
             f"`configpath` must be a valid file path. Provided path: `{configpath}` does not exist."
         )
 
-def yaml_reader(path: str) -> None:
+def yaml_reader(path: str, env:str) -> None:
     """
     Function to read YAML config file
     """
     try:
         with open(path, "r") as yamlfile:
             data = yaml.load(yamlfile, Loader=yaml.FullLoader)
-            print(data)
+            return data[env]
     except Exception as e:
         print(f"Error reading YAML file: {e}")
 

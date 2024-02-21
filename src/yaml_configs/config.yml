@@ -2,6 +2,12 @@ rest:
   url: "https://example.com/"
   port: 3001
 
-details: "A Demo Website"
+dev:
+  url: "https://dev.com/"
+  port: 3010
+
+prod:
+  url: "https://prod.com/"
+  port: 2007
 
 

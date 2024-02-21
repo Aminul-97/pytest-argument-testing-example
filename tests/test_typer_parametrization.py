@@ -8,11 +8,19 @@ runner = CliRunner()
 # Test cases with location and expected result
 test_cases = [
     (
-        "src/yaml_configs/config.yml",  # Valid path 
-        "{'rest': {'url': 'https://example.com/', 'port': 3001}, 'details': 'A Demo Website'}",
+        "src/yaml_configs/config.yml",  # Valid path without optional args
+        "{'url': 'https://example.com/', 'port': 3001}",
     ),
-     (
-        "src/config.yml",  # Path not exist 
+    (
+        "src/yaml_configs/config.yml --env 'dev'",  # Valid path witho optional args
+        "{'url': 'https://dev.com/', 'port': 3010}",
+    ),
+    (
+        "--env 'prod' 'src/yaml_configs/config.yml'",  # Different order
+        "{'url': 'https://prod.com/', 'port': 2007}",
+    ),
+    (
+        "src/config.yml --env 'prod'",  # Path not exist 
         "`configpath` must be a valid file path. Provided path: `src/config.yml` does not exist.",
     ),
     (
@@ -24,11 +32,15 @@ test_cases = [
         "Missing argument",
     ),
     (
-        "src/yaml_configs==config.yml",  # Invalid ascii character passsed
+        "'src/yaml_configs/config.yml' -env 'dev'",  # Invalid flag
+        "No such option",
+    ),
+    (
+        "src/yaml_configs==config.yml --env 'dev'",  # Invalid ascii character passsed
         "`configpath` must be a valid file path. Provided path: `src/yaml_configs==config.yml` does not exist.",
     ),
     (
-        "path/to/nonexistent/file.yml",  # Nonexistent file
+        "path/to/nonexistent/file.yml --env 'dev'",  # Nonexistent file
         "`configpath` must be a valid file path. Provided path: `path/to/nonexistent/file.yml` does not exist.",
     ),
 ]
