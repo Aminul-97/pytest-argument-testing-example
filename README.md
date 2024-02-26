@@ -1,5 +1,5 @@
-# Pytest CLI Argument Test Example Code
-This repo contains the sample code for the article - **How to Test Argparse CLI arguments with Pytestn**
+# Pytest Command-Line Argument Testing with Argparse and Typer
+This repo contains the sample code for the article - [How To Test CLI Applications With Pytest, Argparse And Typer](https://pytest-with-eric.com/pytest-advanced/pytest-argparse-typer/)
 
 # Requirements
 * Python (3.12+)
